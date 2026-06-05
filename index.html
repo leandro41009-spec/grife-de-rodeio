@@ -9,7 +9,6 @@
         body { background-color: #0b0b0b; color: #fff; text-align: center; padding-bottom: 40px; }
         .container { max-width: 480px; margin: 0 auto; padding: 0 15px; }
         
-        /* NOVO HEADER COM LOGO E CATEGORIAS */
         header { 
             background: #111; 
             padding: 20px 10px; 
@@ -19,6 +18,7 @@
         }
         .logo-header {
             max-width: 160px;
+            width: 100%;
             height: auto;
             display: block;
             margin: 0 auto 15px auto;
@@ -37,17 +37,11 @@
             font-size: 13px;
             font-weight: bold;
             text-transform: uppercase;
-            transition: color 0.2s;
-        }
-        .nav-categories a:hover {
-            color: #fff;
         }
 
-        /* BLOCOS GERAIS */
         .block { background: #161616; border: 1px solid #2a2a2a; border-radius: 15px; padding: 20px; margin-bottom: 25px; }
         .block h2 { font-size: 18px; color: #dfb15b; margin-bottom: 15px; text-transform: uppercase; letter-spacing: 1px; }
         
-        /* NOVA SEÇÃO DE LOOK LADO A LADO */
         .look-section {
             display: flex;
             align-items: center;
@@ -58,11 +52,10 @@
             padding: 15px;
             margin-bottom: 25px;
         }
-        .look-media {
-            flex: 1.1;
-        }
+        .look-media { flex: 1.1; }
         .look-img {
             width: 100%;
+            height: auto;
             border-radius: 10px;
             border: 1px solid #333;
             display: block;
@@ -75,7 +68,6 @@
             justify-content: center;
         }
 
-        /* BOTÕES 3D, SOMBREADOS E PULSANTES */
         .btn-3d {
             display: block;
             width: 100%;
@@ -92,9 +84,6 @@
             box-shadow: 0 5px 0 #611313, 0 8px 15px rgba(0, 0, 0, 0.6);
             text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
             position: relative;
-            transition: all 0.1s ease;
-            
-            /* Efeito Pulsante */
             animation: pulse-shadow 1.8s infinite ease-in-out;
         }
         .btn-3d:active {
@@ -102,23 +91,12 @@
             box-shadow: 0 1px 0 #611313, 0 3px 6px rgba(0, 0, 0, 0.6);
         }
 
-        /* Animação Pulsar do Botão 3D */
         @keyframes pulse-shadow {
-            0% {
-                transform: scale(1);
-                box-shadow: 0 5px 0 #611313, 0 8px 15px rgba(214, 69, 69, 0.3);
-            }
-            50% {
-                transform: scale(1.03);
-                box-shadow: 0 5px 0 #611313, 0 12px 20px rgba(214, 69, 69, 0.6);
-            }
-            100% {
-                transform: scale(1);
-                box-shadow: 0 5px 0 #611313, 0 8px 15px rgba(214, 69, 69, 0.3);
-            }
+            0% { transform: scale(1); box-shadow: 0 5px 0 #611313, 0 8px 15px rgba(214, 69, 69, 0.3); }
+            50% { transform: scale(1.03); box-shadow: 0 5px 0 #611313, 0 12px 20px rgba(214, 69, 69, 0.6); }
+            100% { transform: scale(1); box-shadow: 0 5px 0 #611313, 0 8px 15px rgba(214, 69, 69, 0.3); }
         }
 
-        /* BOTÃO PADRÃO (EBOOK) */
         .btn-gold {
             display: block;
             background: linear-gradient(135deg, #dfb15b, #b38936);
@@ -129,19 +107,17 @@
             border-radius: 8px;
             font-size: 15px;
             box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-            transition: transform 0.2s;
         }
-        .btn-gold:active { transform: scale(0.98); }
         .btn-spotify { background: #1DB954; color: #fff; }
         .ebook-text { font-size: 14px; color: #ccc; margin-bottom: 15px; line-height: 1.5; }
     </style>
 </head>
 <body>
 
-    <!-- NOVO HEADER COM LOGO DA IMAGEM CONECTADA -->
     <header>
         <div class="container">
-            <img src="logogrifederodeio.jpg" alt="Grife de Rodeio" class="logo-header">
+            <!-- Puxando o arquivo de logo enviado ao repositório -->
+            <img src="logogrifederodeio.jpg" onerror="this.src='logogrifederodeio.png'; this.onerror=function(){this.src='logogrifederodeio.jpeg';}" alt="Grife de Rodeio" class="logo-header">
             <nav class="nav-categories">
                 <a href="#looks">Look Country</a>
                 <a href="#ebook">Ebook</a>
@@ -152,29 +128,24 @@
 
     <div class="container">
         
-        <!-- SEÇÃO LOOK COUNTRY COM COMPOSIÇÃO LADO A LADO -->
         <div id="looks" class="look-section">
             <div class="look-media">
-                <!-- Imagem real da nova cantora ativa -->
-                <img src="look1grifederodeio.jpg" alt="Look Grife de Rodeio" class="look-img">
+                <!-- Puxando o arquivo do look enviado ao repositório -->
+                <img src="look1grifederodeio.jpg" onerror="this.src='look1grifederodeio.png'; this.onerror=function(){this.src='look1grifederodeio.jpeg';}" alt="Look Grife de Rodeio" class="look-img">
             </div>
             <div class="look-actions">
-                <a href="https://www.mercadolivre.com.br/chapeu-cowntry-americano-boiadeira-agro-com-brilho-cor-preto-desenho-do-tecido-liso-tamanho-p/p/MLB67575161#polycard_client=search-desktop&be_origin=backend&search_layout=grid&position=38&type=product&tracking_id=fedf3b1f-324e-4153-9079-ca1714ce036b&wid=MLB4693832433&sid=search" target="_blank" class="btn-3d">🤠 Comprar Chapéu</a>
-                
-                <a href="https://www.mercadolivre.com.br/vestido-suede-camurca-franjas-festa-country-boiadeira-rodeio/up/MLBU3857382799?pdp_filters=item_id:MLB6510915932#is_advertising=true&searchVariation=MLBU3857382799&backend_model=search-backend&be_origin=backend&position=3&search_layout=grid&type=pad&tracking_id=755dff2e-2fa4-498d-83f4-d5754d40d0bd&ad_domain=VQCATCORE_LST&ad_position=3&ad_click_id=OTUyZmZjZTEtMDZmMC00YTNmLTlkOTMtMDYxYTk3Yjg0NDI5" target="_blank" class="btn-3d">👗 Comprar Vestido</a>
-                
-                <a href="https://www.mercadolivre.com.br/bota-feminina-lumiss-country-western-cano-medio-salto-baixo/up/MLBU3795451039#polycard_client=search-desktop&be_origin=backend&search_layout=grid&position=8&type=product&tracking_id=65158c42-6cbf-4db3-a6c6-b9261d4db88c&wid=MLB4479071805&sid=search" target="_blank" class="btn-3d"> 👢 Comprar Bota</a>
+                <a href="https://www.mercadolivre.com.br/chapeu-cowntry-americano-boiadeira-agro-com-brilho-cor-preto-desenho-do-tecido-liso-tamanho-p/p/MLB67575161" target="_blank" class="btn-3d">🤠 Comprar Chapéu</a>
+                <a href="https://www.mercadolivre.com.br/vestido-suede-camurca-franjas-festa-country-boiadeira-rodeio/up/MLBU3857382799" target="_blank" class="btn-3d">膜 Comprar Vestido</a>
+                <a href="https://www.mercadolivre.com.br/bota-feminina-lumiss-country-western-cano-medio-salto-baixo/up/MLBU3795451039" target="_blank" class="btn-3d">👢 Comprar Bota</a>
             </div>
         </div>
 
-        <!-- SEÇÃO INFOPRODUTO (EBOOK) -->
         <div id="ebook" class="block">
             <h2>Crie sua Cantora com IA</h2>
             <p class="ebook-text">Descubra o método exato que usamos para criar músicas completas e cantoras virtuais de sucesso usando Inteligência Artificial.</p>
             <a href="#" target="_blank" class="btn-gold">📘 Comprar Ebook Passo a Passo</a>
         </div>
 
-        <!-- SEÇÃO MUSICAL (SPOTIFY) -->
         <div id="spotify" class="block">
             <h2>Ouça os Lançamentos</h2>
             <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/37i9dQZF1DX10zKzsJ2jva" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
