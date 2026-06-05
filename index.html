@@ -42,12 +42,24 @@
         .block { background: #161616; border: 1px solid #2a2a2a; border-radius: 15px; padding: 20px; margin-bottom: 25px; }
         .block h2 { font-size: 18px; color: #dfb15b; margin-bottom: 15px; text-transform: uppercase; letter-spacing: 1px; }
         
-        /* CONTAINER DO LOOK COM BOTÕES POR CIMA DA FOTO */
+        /* ESTRUTURA DO CARROSSEL HORIZONTAL */
+        .carousel-wrapper {
+            display: flex;
+            gap: 15px;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            padding-bottom: 15px;
+            margin-bottom: 25px;
+            scrollbar-width: none; /* Esconde barra no Firefox */
+        }
+        .carousel-wrapper::-webkit-scrollbar {
+            display: none; /* Esconde barra no Chrome/Safari */
+        }
+
         .look-container-relative {
             position: relative;
-            width: 100%;
-            max-width: 450px;
-            margin: 0 auto 25px auto;
+            flex: 0 0 100%; /* Cada look ocupa 100% da largura interna */
+            scroll-snap-align: start;
             border-radius: 15px;
             border: 1px solid #2a2a2a;
             overflow: hidden;
@@ -59,12 +71,9 @@
             display: block;
         }
 
-        /* POSICIONAMENTO DOS BOTÕES FLUTUANTES EM 3D */
+        /* ESTILO BASE DOS BOTÕES FLUTUANTES */
         .btn-overlay {
             position: absolute;
-            right: 5%; /* Alinhados no espaço em branco da direita */
-            width: 45%; /* Largura ideal para cobrir a área branca */
-            padding: 10px 5px;
             color: #fff;
             text-decoration: none;
             font-weight: bold;
@@ -72,28 +81,78 @@
             text-transform: uppercase;
             text-align: center;
             border-radius: 8px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
+            transition: all 0.1s ease;
+            z-index: 10;
+        }
+
+        /* 1) BOTÕES VERMELHOS (LOOK 1) */
+        .btn-red {
+            right: 5%;
+            width: 45%;
+            padding: 10px 5px;
             background: linear-gradient(to bottom, #d64545 0%, #a82c2c 100%);
             border: 1px solid #801a1a;
             box-shadow: 0 4px 0 #611313, 0 6px 10px rgba(0, 0, 0, 0.5);
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
-            transition: all 0.1s ease;
-            animation: pulse-shadow 1.8s infinite ease-in-out;
-            z-index: 10;
+            animation: pulse-shadow-red 1.8s infinite ease-in-out;
         }
-        .btn-overlay:active {
+        .btn-red:active {
             transform: translateY(3px);
             box-shadow: 0 1px 0 #611313, 0 2px 4px rgba(0, 0, 0, 0.5);
         }
+        .btn-chapeu-1 { top: 7%; }
+        .btn-vestido-1 { top: 32%; }
+        .btn-bota-1 { top: 78%; }
 
-        /* ALTURA DE CADA BOTÃO EM CIMA DA MODELO */
-        .btn-chapeu { top: 7%; }   /* Na altura do chapéu */
-        .btn-vestido { top: 32%; } /* Na altura do corpo/vestido */
-        .btn-bota { top: 78%; }    /* Na altura das botas */
+        /* 2) BOTÕES DOURADOS (LOOK 2) */
+        .btn-gold-3d {
+            right: 4%;
+            width: 42%;
+            padding: 8px 4px;
+            color: #000;
+            text-shadow: none;
+            font-weight: 800;
+            background: linear-gradient(to bottom, #f3cb7b 0%, #b38936 100%);
+            border: 1px solid #8a641d;
+            box-shadow: 0 4px 0 #5c4210, 0 6px 10px rgba(0, 0, 0, 0.5);
+            animation: pulse-shadow-gold 1.8s infinite ease-in-out;
+        }
+        .btn-gold-3d:active {
+            transform: translateY(3px);
+            box-shadow: 0 1px 0 #5c4210, 0 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        /* Ajustes finos de altura baseados no look2grifederodeio.jpg */
+        .btn-chapeu-2 { top: 6%; }
+        .btn-camisa-2 { top: 25%; }
+        .btn-saia-2 { top: 52%; }
+        .btn-bota-2 { top: 82%; }
 
-        @keyframes pulse-shadow {
+        /* INDICAÇÃO VISUAL DE ARRASTAR */
+        .swipe-hint {
+            font-size: 12px;
+            color: #dfb15b;
+            margin-top: -15px;
+            margin-bottom: 25px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            opacity: 0.8;
+            animation: blink 2s infinite;
+        }
+
+        /* ANIMAÇÕES */
+        @keyframes pulse-shadow-red {
             0% { transform: scale(1); box-shadow: 0 4px 0 #611313, 0 6px 10px rgba(214, 69, 69, 0.3); }
             50% { transform: scale(1.03); box-shadow: 0 4px 0 #611313, 0 10px 15px rgba(214, 69, 69, 0.6); }
             100% { transform: scale(1); box-shadow: 0 4px 0 #611313, 0 6px 10px rgba(214, 69, 69, 0.3); }
+        }
+        @keyframes pulse-shadow-gold {
+            0% { transform: scale(1); box-shadow: 0 4px 0 #5c4210, 0 6px 10px rgba(243, 203, 123, 0.3); }
+            50% { transform: scale(1.03); box-shadow: 0 4px 0 #5c4210, 0 10px 15px rgba(243, 203, 123, 0.6); }
+            100% { transform: scale(1); box-shadow: 0 4px 0 #5c4210, 0 6px 10px rgba(243, 203, 123, 0.3); }
+        }
+        @keyframes blink {
+            0%, 100% { opacity: 0.4; }
+            50% { opacity: 1; }
         }
 
         .btn-gold {
@@ -126,17 +185,30 @@
 
     <div class="container">
         
-        <!-- SEÇÃO LOOK COUNTRY COM BOTÕES SOBREPOSTOS NA FOTO -->
-        <div id="looks" class="look-container-relative">
-            <img src="look1grifederodeio.png" alt="Look Grife de Rodeio" class="look-bg-img">
+        <!-- SEÇÃO DOS LOOKS EM CARROSSEL -->
+        <div id="looks" class="carousel-wrapper">
             
-            <!-- Botões flutuando exatamente nas alturas corretas da foto -->
-            <a href="https://www.mercadolivre.com.br/chapeu-cowntry-americano-boiadeira-agro-com-brilho-cor-preto-desenho-do-tecido-liso-tamanho-p/p/MLB67575161" target="_blank" class="btn-overlay btn-chapeu">🤠 COMPRAR CHAPÉU</a>
-            
-            <a href="https://www.mercadolivre.com.br/vestido-suede-camurca-franjas-festa-country-boiadeira-rodeio/up/MLBU3857382799" target="_blank" class="btn-overlay btn-vestido">👗 COMPRAR VESTIDO</a>
-            
-            <a href="https://www.mercadolivre.com.br/bota-feminina-lumiss-country-western-cano-medio-salto-baixo/up/MLBU3795451039" target="_blank" class="btn-overlay btn-bota">👢 COMPRAR BOTA</a>
+            <!-- LOOK 1 (BOTÕES VERMELHOS) -->
+            <div class="look-container-relative">
+                <img src="look1grifederodeio.png" alt="Look 1 Grife de Rodeio" class="look-bg-img">
+                <a href="https://www.mercadolivre.com.br/chapeu-cowntry-americano-boiadeira-agro-com-brilho-cor-preto-desenho-do-tecido-liso-tamanho-p/p/MLB67575161" target="_blank" class="btn-overlay btn-red btn-chapeu-1">🤠 COMPRAR CHAPÉU</a>
+                <a href="https://www.mercadolivre.com.br/vestido-suede-camurca-franjas-festa-country-boiadeira-rodeio/up/MLBU3857382799" target="_blank" class="btn-overlay btn-red btn-vestido-1">👗 COMPRAR VESTIDO</a>
+                <a href="https://www.mercadolivre.com.br/bota-feminina-lumiss-country-western-cano-medio-salto-baixo/up/MLBU3795451039" target="_blank" class="btn-overlay btn-red btn-bota-1">👢 COMPRAR BOTA</a>
+            </div>
+
+            <!-- LOOK 2 (BOTÕES DOURADOS) -->
+            <div class="look-container-relative">
+                <img src="look2grifederodeio.jpg" alt="Look 2 Grife de Rodeio" class="look-bg-img">
+                <a href="https://meli.la/2j9evH8" target="_blank" class="btn-overlay btn-gold-3d btn-chapeu-2">🤠 COMPRAR CHAPÉU</a>
+                <a href="https://meli.la/2rU1zLS" target="_blank" class="btn-overlay btn-gold-3d btn-camisa-2">👚 COMPRAR CAMISA</a>
+                <a href="https://meli.la/1MCsc3M" target="_blank" class="btn-overlay btn-gold-3d btn-saia-2">👗 COMPRAR SAIA</a>
+                <a href="https://meli.la/2boT1xp" target="_blank" class="btn-overlay btn-gold-3d btn-bota-2">👢 COMPRAR BOTA</a>
+            </div>
+
         </div>
+        
+        <!-- Dica sutil para o usuário saber que dá para arrastar para o lado -->
+        <div class="swipe-hint">⟨ Arraste para o lado para ver mais looks ⟩</div>
 
         <div id="ebook" class="block">
             <h2>Crie sua Cantora com IA</h2>
