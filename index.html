@@ -42,59 +42,58 @@
         .block { background: #161616; border: 1px solid #2a2a2a; border-radius: 15px; padding: 20px; margin-bottom: 25px; }
         .block h2 { font-size: 18px; color: #dfb15b; margin-bottom: 15px; text-transform: uppercase; letter-spacing: 1px; }
         
-        .look-section {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            background: #161616;
-            border: 1px solid #2a2a2a;
+        /* CONTAINER DO LOOK COM BOTÕES POR CIMA DA FOTO */
+        .look-container-relative {
+            position: relative;
+            width: 100%;
+            max-width: 450px;
+            margin: 0 auto 25px auto;
             border-radius: 15px;
-            padding: 15px;
-            margin-bottom: 25px;
+            border: 1px solid #2a2a2a;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.7);
         }
-        .look-media { flex: 1.1; }
-        .look-img {
+        .look-bg-img {
             width: 100%;
             height: auto;
-            border-radius: 10px;
-            border: 1px solid #333;
             display: block;
-        }
-        .look-actions {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            justify-content: center;
         }
 
-        .btn-3d {
-            display: block;
-            width: 100%;
-            padding: 12px 8px;
+        /* POSICIONAMENTO DOS BOTÕES FLUTUANTES EM 3D */
+        .btn-overlay {
+            position: absolute;
+            right: 5%; /* Alinhados no espaço em branco da direita */
+            width: 45%; /* Largura ideal para cobrir a área branca */
+            padding: 10px 5px;
             color: #fff;
             text-decoration: none;
             font-weight: bold;
-            font-size: 12px;
+            font-size: 11px;
             text-transform: uppercase;
             text-align: center;
             border-radius: 8px;
             background: linear-gradient(to bottom, #d64545 0%, #a82c2c 100%);
             border: 1px solid #801a1a;
-            box-shadow: 0 5px 0 #611313, 0 8px 15px rgba(0, 0, 0, 0.6);
+            box-shadow: 0 4px 0 #611313, 0 6px 10px rgba(0, 0, 0, 0.5);
             text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
-            position: relative;
+            transition: all 0.1s ease;
             animation: pulse-shadow 1.8s infinite ease-in-out;
+            z-index: 10;
         }
-        .btn-3d:active {
-            transform: translateY(4px);
-            box-shadow: 0 1px 0 #611313, 0 3px 6px rgba(0, 0, 0, 0.6);
+        .btn-overlay:active {
+            transform: translateY(3px);
+            box-shadow: 0 1px 0 #611313, 0 2px 4px rgba(0, 0, 0, 0.5);
         }
 
+        /* ALTURA DE CADA BOTÃO EM CIMA DA MODELO */
+        .btn-chapeu { top: 7%; }   /* Na altura do chapéu */
+        .btn-vestido { top: 32%; } /* Na altura do corpo/vestido */
+        .btn-bota { top: 78%; }    /* Na altura das botas */
+
         @keyframes pulse-shadow {
-            0% { transform: scale(1); box-shadow: 0 5px 0 #611313, 0 8px 15px rgba(214, 69, 69, 0.3); }
-            50% { transform: scale(1.03); box-shadow: 0 5px 0 #611313, 0 12px 20px rgba(214, 69, 69, 0.6); }
-            100% { transform: scale(1); box-shadow: 0 5px 0 #611313, 0 8px 15px rgba(214, 69, 69, 0.3); }
+            0% { transform: scale(1); box-shadow: 0 4px 0 #611313, 0 6px 10px rgba(214, 69, 69, 0.3); }
+            50% { transform: scale(1.03); box-shadow: 0 4px 0 #611313, 0 10px 15px rgba(214, 69, 69, 0.6); }
+            100% { transform: scale(1); box-shadow: 0 4px 0 #611313, 0 6px 10px rgba(214, 69, 69, 0.3); }
         }
 
         .btn-gold {
@@ -116,8 +115,7 @@
 
     <header>
         <div class="container">
-            <!-- Puxando o arquivo de logo enviado ao repositório -->
-            <img src="logogrifederodeio.jpg" onerror="this.src='logogrifederodeio.png'; this.onerror=function(){this.src='logogrifederodeio.jpeg';}" alt="Grife de Rodeio" class="logo-header">
+            <img src="logogrifederodeio.png" alt="Grife de Rodeio" class="logo-header">
             <nav class="nav-categories">
                 <a href="#looks">Look Country</a>
                 <a href="#ebook">Ebook</a>
@@ -128,16 +126,16 @@
 
     <div class="container">
         
-        <div id="looks" class="look-section">
-            <div class="look-media">
-                <!-- Puxando o arquivo do look enviado ao repositório -->
-                <img src="look1grifederodeio.jpg" onerror="this.src='look1grifederodeio.png'; this.onerror=function(){this.src='look1grifederodeio.jpeg';}" alt="Look Grife de Rodeio" class="look-img">
-            </div>
-            <div class="look-actions">
-                <a href="https://www.mercadolivre.com.br/chapeu-cowntry-americano-boiadeira-agro-com-brilho-cor-preto-desenho-do-tecido-liso-tamanho-p/p/MLB67575161" target="_blank" class="btn-3d">🤠 Comprar Chapéu</a>
-                <a href="https://www.mercadolivre.com.br/vestido-suede-camurca-franjas-festa-country-boiadeira-rodeio/up/MLBU3857382799" target="_blank" class="btn-3d">膜 Comprar Vestido</a>
-                <a href="https://www.mercadolivre.com.br/bota-feminina-lumiss-country-western-cano-medio-salto-baixo/up/MLBU3795451039" target="_blank" class="btn-3d">👢 Comprar Bota</a>
-            </div>
+        <!-- SEÇÃO LOOK COUNTRY COM BOTÕES SOBREPOSTOS NA FOTO -->
+        <div id="looks" class="look-container-relative">
+            <img src="look1grifederodeio.png" alt="Look Grife de Rodeio" class="look-bg-img">
+            
+            <!-- Botões flutuando exatamente nas alturas corretas da foto -->
+            <a href="https://www.mercadolivre.com.br/chapeu-cowntry-americano-boiadeira-agro-com-brilho-cor-preto-desenho-do-tecido-liso-tamanho-p/p/MLB67575161" target="_blank" class="btn-overlay btn-chapeu">🤠 COMPRAR CHAPÉU</a>
+            
+            <a href="https://www.mercadolivre.com.br/vestido-suede-camurca-franjas-festa-country-boiadeira-rodeio/up/MLBU3857382799" target="_blank" class="btn-overlay btn-vestido">👗 COMPRAR VESTIDO</a>
+            
+            <a href="https://www.mercadolivre.com.br/bota-feminina-lumiss-country-western-cano-medio-salto-baixo/up/MLBU3795451039" target="_blank" class="btn-overlay btn-bota">👢 COMPRAR BOTA</a>
         </div>
 
         <div id="ebook" class="block">
