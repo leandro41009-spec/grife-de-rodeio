@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Grife de Rodeo | Portal Oficial</title>
+    <title>Grife de Rodeio | Portal Oficial</title>
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
         body { background-color: #0b0b0b; color: #fff; text-align: center; padding-bottom: 40px; }
@@ -42,23 +42,38 @@
         .block { background: #161616; border: 1px solid #2a2a2a; border-radius: 15px; padding: 20px; margin-bottom: 25px; }
         .block h2 { font-size: 18px; color: #dfb15b; margin-bottom: 15px; text-transform: uppercase; letter-spacing: 1px; }
         
-        /* ESTRUTURA DO CARROSSEL HORIZONTAL */
+        /* CONTAINER DO CARROSSEL COM SETAS EXTERNAS */
+        .carousel-container-relative {
+            position: relative;
+            margin-bottom: 15px;
+        }
+
+        /* ESTRUTURA DO CARROSSEL HORIZONTAL COM BARRA VISÍVEL */
         .carousel-wrapper {
             display: flex;
             gap: 15px;
             overflow-x: auto;
             scroll-snap-type: x mandatory;
             padding-bottom: 15px;
-            margin-bottom: 25px;
-            scrollbar-width: none; /* Esconde barra no Firefox */
+            scroll-behavior: smooth;
         }
+        /* Customizando a barra de rolagem para ficar visível e bonita */
         .carousel-wrapper::-webkit-scrollbar {
-            display: none; /* Esconde barra no Chrome/Safari */
+            height: 6px;
+            display: block;
+        }
+        .carousel-wrapper::-webkit-scrollbar-track {
+            background: #161616;
+            border-radius: 10px;
+        }
+        .carousel-wrapper::-webkit-scrollbar-thumb {
+            background: #dfb15b;
+            border-radius: 10px;
         }
 
         .look-container-relative {
             position: relative;
-            flex: 0 0 100%; /* Cada look ocupa 100% da largura interna */
+            flex: 0 0 100%;
             scroll-snap-align: start;
             border-radius: 15px;
             border: 1px solid #2a2a2a;
@@ -70,6 +85,54 @@
             height: auto;
             display: block;
         }
+
+        /* INDICADORES DE BOLINHAS (BULLETS) ESTILO INSTAGRAM */
+        .carousel-bullets {
+            position: absolute;
+            bottom: 25px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 6px;
+            z-index: 20;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 6px 10px;
+            border-radius: 20px;
+            pointer-events: none;
+        }
+        .bullet {
+            width: 8px;
+            height: 8px;
+            background-color: rgba(255, 255, 255, 0.4);
+            border-radius: 50%;
+            transition: background-color 0.3s;
+        }
+        /* Destaca as bolinhas correspondentes aos looks */
+        .look-container-relative:nth-child(1) ~ .carousel-bullets .b1 { background-color: #dfb15b; }
+        
+        /* SETAS DE NAVEGAÇÃO NAS LATERAIS */
+        .nav-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 36px;
+            height: 36px;
+            background: rgba(0, 0, 0, 0.6);
+            border: 1px solid rgba(223, 177, 91, 0.5);
+            color: #dfb15b;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            font-weight: bold;
+            z-index: 25;
+            text-decoration: none;
+            user-select: none;
+            pointer-events: auto;
+        }
+        .arrow-left { left: -10px; }
+        .arrow-right { right: -10px; }
 
         /* ESTILO BASE DOS BOTÕES FLUTUANTES */
         .btn-overlay {
@@ -121,25 +184,27 @@
             box-shadow: 0 1px 0 #5c4210, 0 2px 4px rgba(0, 0, 0, 0.5);
         }
         
-        /* Posicionamento na Direita para o Look 2 */
+        /* Alinhamentos bases laterais */
         .pos-right { right: 4%; }
+        .pos-left { left: 4%; }
+
+        /* Look 2 */
         .btn-chapeu-2 { top: 6%; }
         .btn-camisa-2 { top: 25%; }
         .btn-saia-2 { top: 52%; }
         .btn-bota-2 { top: 82%; }
 
-        /* Posicionamento na Esquerda para o Look 3 (evita cobrir a modelo sentada) */
-        .pos-left { left: 4%; }
-        .btn-chapeu-3 { top: 9%; }
-        .btn-camisa-3 { top: 28%; }
-        .btn-legging-3 { top: 48%; }
-        .btn-bota-3 { top: 74%; }
+        /* Look 3 - DISTRIBUIÇÃO EM ZIGUEZAGUE PARA NÃO COBRIR A MODELO */
+        .btn-chapeu-3 { top: 7%; right: 4%; }  /* Jogado para a direita (fundo limpo) */
+        .btn-camisa-3 { top: 26%; left: 4%; }  /* Jogado para a esquerda */
+        .btn-legging-3 { top: 48%; right: 4%; } /* Jogado para a direita */
+        .btn-bota-3 { top: 74%; left: 4%; }   /* Jogado para a esquerda */
 
         /* INDICAÇÃO VISUAL DE ARRASTAR */
         .swipe-hint {
             font-size: 12px;
             color: #dfb15b;
-            margin-top: -15px;
+            margin-top: 10px;
             margin-bottom: 25px;
             text-transform: uppercase;
             letter-spacing: 2px;
@@ -193,38 +258,67 @@
 
     <div class="container">
         
-        <!-- SEÇÃO DOS LOOKS EM CARROSSEL -->
-        <div id="looks" class="carousel-wrapper">
+        <!-- WRAPPER DO CARROSSEL COM ADICIONAIS VISUAIS -->
+        <div class="carousel-container-relative" id="looks">
             
-            <!-- LOOK 1 -->
-            <div class="look-container-relative">
-                <img src="look1grifederodeio.png" alt="Look 1 Grife de Rodeio" class="look-bg-img">
-                <a href="https://www.mercadolivre.com.br/chapeu-cowntry-americano-boiadeira-agro-com-brilho-cor-preto-desenho-do-tecido-liso-tamanho-p/p/MLB67575161" target="_blank" class="btn-overlay btn-red btn-chapeu-1">🤠 COMPRAR CHAPÉU</a>
-                <a href="https://www.mercadolivre.com.br/vestido-suede-camurca-franjas-festa-country-boiadeira-rodeio/up/MLBU3857382799" target="_blank" class="btn-overlay btn-red btn-vestido-1">👗 COMPRAR VESTIDO</a>
-                <a href="https://www.mercadolivre.com.br/bota-feminina-lumiss-country-western-cano-medio-salto-baixo/up/MLBU3795451039" target="_blank" class="btn-overlay btn-red btn-bota-1">👢 COMPRAR BOTA</a>
-            </div>
+            <!-- SETAS FLUTUANTES -->
+            <div class="nav-arrow arrow-left">‹</div>
+            <div class="nav-arrow arrow-right">›</div>
 
-            <!-- LOOK 2 -->
-            <div class="look-container-relative">
-                <img src="look2grifederodeio.png" onerror="this.src='look2grifederodeio.jpg';" alt="Look 2 Grife de Rodeio" class="look-bg-img">
-                <a href="https://meli.la/2j9evH8" target="_blank" class="btn-overlay btn-gold-3d pos-right btn-chapeu-2">🤠 COMPRAR CHAPÉU</a>
-                <a href="https://meli.la/2rU1zLS" target="_blank" class="btn-overlay btn-gold-3d pos-right btn-camisa-2">👚 COMPRAR CAMISA</a>
-                <a href="https://meli.la/1MCsc3M" target="_blank" class="btn-overlay btn-gold-3d pos-right btn-saia-2">👗 COMPRAR SAIA</a>
-                <a href="https://meli.la/2boT1xp" target="_blank" class="btn-overlay btn-gold-3d pos-right btn-bota-2">👢 COMPRAR BOTA</a>
-            </div>
+            <!-- CARROSSEL PRINCIPAL -->
+            <div class="carousel-wrapper">
+                
+                <!-- LOOK 1 -->
+                <div class="look-container-relative">
+                    <img src="look1grifederodeio.png" alt="Look 1 Grife de Rodeio" class="look-bg-img">
+                    <a href="https://www.mercadolivre.com.br/chapeu-cowntry-americano-boiadeira-agro-com-brilho-cor-preto-desenho-do-tecido-liso-tamanho-p/p/MLB67575161" target="_blank" class="btn-overlay btn-red btn-chapeu-1">🤠 COMPRAR CHAPÉU</a>
+                    <a href="https://www.mercadolivre.com.br/vestido-suede-camurca-franjas-festa-country-boiadeira-rodeio/up/MLBU3857382799" target="_blank" class="btn-overlay btn-red btn-vestido-1">👗 COMPRAR VESTIDO</a>
+                    <a href="https://www.mercadolivre.com.br/bota-feminina-lumiss-country-western-cano-medio-salto-baixo/up/MLBU3795451039" target="_blank" class="btn-overlay btn-red btn-bota-1">👢 COMPRAR BOTA</a>
+                    
+                    <!-- INDICADOR DE BOLINHAS INTERNO -->
+                    <div class="carousel-bullets">
+                        <div class="bullet" style="background-color: #dfb15b;"></div>
+                        <div class="bullet"></div>
+                        <div class="bullet"></div>
+                    </div>
+                </div>
 
-            <!-- LOOK 3 (NOVO LOOK ADICIONADO) -->
-            <div class="look-container-relative">
-                <img src="look3grifederodeio.jpg" onerror="this.src='look3grifederodeio.png';" alt="Look 3 Grife de Rodeio" class="look-bg-img">
-                <a href="https://meli.la/1NA2R6i" target="_blank" class="btn-overlay btn-gold-3d pos-left btn-chapeu-3">🤠 CHAPÉU</a>
-                <a href="https://meli.la/1fnTTrc" target="_blank" class="btn-overlay btn-gold-3d pos-left btn-camisa-3">👚 CAMISETTA</a>
-                <a href="https://meli.la/32cDMVe" target="_blank" class="btn-overlay btn-gold-3d pos-left btn-legging-3">👖 LEGGING</a>
-                <a href="https://meli.la/17TuqgD" target="_blank" class="btn-overlay btn-gold-3d pos-left btn-bota-3">👢 BOTA</a>
-            </div>
+                <!-- LOOK 2 -->
+                <div class="look-container-relative">
+                    <img src="look2grifederodeio.png" onerror="this.src='look2grifederodeio.jpg';" alt="Look 2 Grife de Rodeio" class="look-bg-img">
+                    <a href="https://meli.la/2j9evH8" target="_blank" class="btn-overlay btn-gold-3d pos-right btn-chapeu-2">🤠 COMPRAR CHAPÉU</a>
+                    <a href="https://meli.la/2rU1zLS" target="_blank" class="btn-overlay btn-gold-3d pos-right btn-camisa-2">👚 COMPRAR CAMISA</a>
+                    <a href="https://meli.la/1MCsc3M" target="_blank" class="btn-overlay btn-gold-3d pos-right btn-saia-2">👗 COMPRAR SAIA</a>
+                    <a href="https://meli.la/2boT1xp" target="_blank" class="btn-overlay btn-gold-3d pos-right btn-bota-2">👢 COMPRAR BOTA</a>
+                    
+                    <!-- INDICADOR DE BOLINHAS INTERNO -->
+                    <div class="carousel-bullets">
+                        <div class="bullet"></div>
+                        <div class="bullet" style="background-color: #dfb15b;"></div>
+                        <div class="bullet"></div>
+                    </div>
+                </div>
 
+                <!-- LOOK 3 (SISTEMA DE ZIGUEZAGUE E INDICAÇÕES) -->
+                <div class="look-container-relative">
+                    <img src="look3grifederodeio.jpg" onerror="this.src='look3grifederodeio.png';" alt="Look 3 Grife de Rodeio" class="look-bg-img">
+                    <a href="https://meli.la/1NA2R6i" target="_blank" class="btn-overlay btn-gold-3d btn-chapeu-3">🤠 CHAPÉU</a>
+                    <a href="https://meli.la/1fnTTrc" target="_blank" class="btn-overlay btn-gold-3d btn-camisa-3">👚 CAMISETTA</a>
+                    <a href="https://meli.la/32cDMVe" target="_blank" class="btn-overlay btn-gold-3d btn-legging-3">👖 LEGGING</a>
+                    <a href="https://meli.la/17TuqgD" target="_blank" class="btn-overlay btn-gold-3d btn-bota-3">👢 BOTA</a>
+                    
+                    <!-- INDICADOR DE BOLINHAS INTERNO -->
+                    <div class="carousel-bullets">
+                        <div class="bullet"></div>
+                        <div class="bullet"></div>
+                        <div class="bullet" style="background-color: #dfb15b;"></div>
+                    </div>
+                </div>
+
+            </div>
         </div>
         
-        <div class="swipe-hint">⟨ Arraste para o lado para ver mais looks ⟩</div>
+        <div class="swipe-hint">⟨ Arraste ou use as setas para ver mais looks ⟩</div>
 
         <div id="ebook" class="block">
             <h2>Crie sua Cantora com IA</h2>
