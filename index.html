@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Grife de Rodeio | Portal Oficial</title>
+    <title>Grife de Rodeo | Portal Oficial</title>
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
         body { background-color: #0b0b0b; color: #fff; text-align: center; padding-bottom: 40px; }
@@ -104,9 +104,8 @@
         .btn-vestido-1 { top: 32%; }
         .btn-bota-1 { top: 78%; }
 
-        /* 2) BOTÕES DOURADOS (LOOK 2) */
+        /* 2) BOTÕES DOURADOS (LOOK 2 E LOOK 3) */
         .btn-gold-3d {
-            right: 4%;
             width: 42%;
             padding: 8px 4px;
             color: #000;
@@ -121,11 +120,20 @@
             transform: translateY(3px);
             box-shadow: 0 1px 0 #5c4210, 0 2px 4px rgba(0, 0, 0, 0.5);
         }
-        /* Alinhamento exato para a modelo do Look 2 */
+        
+        /* Posicionamento na Direita para o Look 2 */
+        .pos-right { right: 4%; }
         .btn-chapeu-2 { top: 6%; }
         .btn-camisa-2 { top: 25%; }
         .btn-saia-2 { top: 52%; }
         .btn-bota-2 { top: 82%; }
+
+        /* Posicionamento na Esquerda para o Look 3 (evita cobrir a modelo sentada) */
+        .pos-left { left: 4%; }
+        .btn-chapeu-3 { top: 9%; }
+        .btn-camisa-3 { top: 28%; }
+        .btn-legging-3 { top: 48%; }
+        .btn-bota-3 { top: 74%; }
 
         /* INDICAÇÃO VISUAL DE ARRASTAR */
         .swipe-hint {
@@ -196,13 +204,22 @@
                 <a href="https://www.mercadolivre.com.br/bota-feminina-lumiss-country-western-cano-medio-salto-baixo/up/MLBU3795451039" target="_blank" class="btn-overlay btn-red btn-bota-1">👢 COMPRAR BOTA</a>
             </div>
 
-            <!-- LOOK 2 (APONTANDO PARA O SEU NOVO ARQUIVO PNG) -->
+            <!-- LOOK 2 -->
             <div class="look-container-relative">
-                <img src="look2grifederodeio.png" alt="Look 2 Grife de Rodeio" class="look-bg-img">
-                <a href="https://meli.la/2j9evH8" target="_blank" class="btn-overlay btn-gold-3d btn-chapeu-2">🤠 COMPRAR CHAPÉU</a>
-                <a href="https://meli.la/2rU1zLS" target="_blank" class="btn-overlay btn-gold-3d btn-camisa-2">👚 COMPRAR CAMISA</a>
-                <a href="https://meli.la/1MCsc3M" target="_blank" class="btn-overlay btn-gold-3d btn-saia-2">👗 COMPRAR SAIA</a>
-                <a href="https://meli.la/2boT1xp" target="_blank" class="btn-overlay btn-gold-3d btn-bota-2">👢 COMPRAR BOTA</a>
+                <img src="look2grifederodeio.png" onerror="this.src='look2grifederodeio.jpg';" alt="Look 2 Grife de Rodeio" class="look-bg-img">
+                <a href="https://meli.la/2j9evH8" target="_blank" class="btn-overlay btn-gold-3d pos-right btn-chapeu-2">🤠 COMPRAR CHAPÉU</a>
+                <a href="https://meli.la/2rU1zLS" target="_blank" class="btn-overlay btn-gold-3d pos-right btn-camisa-2">👚 COMPRAR CAMISA</a>
+                <a href="https://meli.la/1MCsc3M" target="_blank" class="btn-overlay btn-gold-3d pos-right btn-saia-2">👗 COMPRAR SAIA</a>
+                <a href="https://meli.la/2boT1xp" target="_blank" class="btn-overlay btn-gold-3d pos-right btn-bota-2">👢 COMPRAR BOTA</a>
+            </div>
+
+            <!-- LOOK 3 (NOVO LOOK ADICIONADO) -->
+            <div class="look-container-relative">
+                <img src="look3grifederodeio.jpg" onerror="this.src='look3grifederodeio.png';" alt="Look 3 Grife de Rodeio" class="look-bg-img">
+                <a href="https://meli.la/1NA2R6i" target="_blank" class="btn-overlay btn-gold-3d pos-left btn-chapeu-3">🤠 CHAPÉU</a>
+                <a href="https://meli.la/1fnTTrc" target="_blank" class="btn-overlay btn-gold-3d pos-left btn-camisa-3">👚 CAMISETTA</a>
+                <a href="https://meli.la/32cDMVe" target="_blank" class="btn-overlay btn-gold-3d pos-left btn-legging-3">👖 LEGGING</a>
+                <a href="https://meli.la/17TuqgD" target="_blank" class="btn-overlay btn-gold-3d pos-left btn-bota-3">👢 BOTA</a>
             </div>
 
         </div>
