@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Grife de Rodeo | Portal Oficial</title>
+    <title>Grife de Rodeio | Portal Oficial</title>
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
         body { background-color: #0b0b0b; color: #fff; text-align: center; padding-bottom: 40px; }
@@ -198,10 +198,10 @@
         .btn-legging-3 { top: 48%; right: 4%; }
         .btn-bota-3 { top: 74%; left: 4%; }
 
-        /* Look 4 - ADICIONADO E DISTRIBUÍDO ESTRATEGICAMENTE */
-        .btn-chapeu-4 { top: 6%; right: 5%; }   /* Aproveita o espaço limpo acima do ombro direito */
-        .btn-vestido-4 { top: 34%; right: 5%; }  /* Aproveita a folga na cintura da pose */
-        .btn-bota-4 { top: 78%; left: 5%; }     /* Focado na bota da esquerda */
+        /* Look 4 */
+        .btn-chapeu-4 { top: 6%; right: 5%; }   
+        .btn-vestido-4 { top: 34%; right: 5%; }  
+        .btn-bota-4 { top: 78%; left: 5%; }     
 
         /* INDICAÇÃO VISUAL DE ARRASTAR */
         .swipe-hint {
@@ -250,7 +250,7 @@
 
     <header>
         <div class="container">
-            <img src="logogrifederodeio.png" alt="Grife de Rodeo" class="logo-header">
+            <img src="logogrifederodeio.png" onerror="this.src='logogrifederodeio.jpg';" alt="Grife de Rodeo" class="logo-header">
             <nav class="nav-categories">
                 <a href="#looks">Look Country</a>
                 <a href="#ebook">Ebook</a>
@@ -261,19 +261,15 @@
 
     <div class="container">
         
-        <!-- WRAPPER DO CARROSSEL COM NAVEGAÇÃO -->
         <div class="carousel-container-relative" id="looks">
             
-            <!-- SETAS FLUTUANTES -->
             <div class="nav-arrow arrow-left">‹</div>
             <div class="nav-arrow arrow-right">›</div>
 
-            <!-- CARROSSEL PRINCIPAL -->
             <div class="carousel-wrapper">
                 
-                <!-- LOOK 1 -->
                 <div class="look-container-relative">
-                    <img src="look1grifederodeio.png" alt="Look 1 Grife de Rodeio" class="look-bg-img">
+                    <img src="look1grifederodeio.png" onerror="this.src='look1grifederodeio.jpg';" alt="Look 1 Grife de Rodeio" class="look-bg-img">
                     <a href="https://www.mercadolivre.com.br/chapeu-cowntry-americano-boiadeira-agro-com-brilho-cor-preto-desenho-do-tecido-liso-tamanho-p/p/MLB67575161" target="_blank" class="btn-overlay btn-red btn-chapeu-1">🤠 COMPRAR CHAPÉU</a>
                     <a href="https://www.mercadolivre.com.br/vestido-suede-camurca-franjas-festa-country-boiadeira-rodeio/up/MLBU3857382799" target="_blank" class="btn-overlay btn-red btn-vestido-1">👗 COMPRAR VESTIDO</a>
                     <a href="https://www.mercadolivre.com.br/bota-feminina-lumiss-country-western-cano-medio-salto-baixo/up/MLBU3795451039" target="_blank" class="btn-overlay btn-red btn-bota-1">👢 COMPRAR BOTA</a>
@@ -286,7 +282,6 @@
                     </div>
                 </div>
 
-                <!-- LOOK 2 -->
                 <div class="look-container-relative">
                     <img src="look2grifederodeio.png" onerror="this.src='look2grifederodeio.jpg';" alt="Look 2 Grife de Rodeio" class="look-bg-img">
                     <a href="https://meli.la/2j9evH8" target="_blank" class="btn-overlay btn-gold-3d pos-right btn-chapeu-2">🤠 COMPRAR CHAPÉU</a>
@@ -302,7 +297,6 @@
                     </div>
                 </div>
 
-                <!-- LOOK 3 -->
                 <div class="look-container-relative">
                     <img src="look3grifederodeio.jpg" onerror="this.src='look3grifederodeio.png';" alt="Look 3 Grife de Rodeio" class="look-bg-img">
                     <a href="https://meli.la/1NA2R6i" target="_blank" class="btn-overlay btn-gold-3d btn-chapeu-3">🤠 CHAPÉU</a>
@@ -318,7 +312,6 @@
                     </div>
                 </div>
 
-                <!-- LOOK 4 (NOVO LOOK ADICIONADO) -->
                 <div class="look-container-relative">
                     <img src="look4.png" onerror="this.src='look4.jpg';" alt="Look 4 Grife de Rodeo" class="look-bg-img">
                     <a href="https://meli.la/2xGRAtb" target="_blank" class="btn-overlay btn-gold-3d btn-chapeu-4">🤠 CHAPÉU</a>
@@ -338,10 +331,37 @@
         
         <div class="swipe-hint">⟨ Arraste ou use as setas para ver mais looks ⟩</div>
 
-        <div id="ebook" class="block">
-            <h2>Crie sua Cantora com IA</h2>
-            <p class="ebook-text">Descubra o método exato que usamos para criar músicas completas e cantoras virtuais de sucesso usando Inteligência Artificial.</p>
-            <a href="#" target="_blank" class="btn-gold">📘 Comprar Ebook Passo a Passo</a>
+        <div id="ebook" class="block" style="padding: 25px 15px;">
+            <h2>Treinamentos com IA</h2>
+            <p class="ebook-text" style="margin-bottom: 25px;">Descubra os métodos exatos para dominar o mercado musical digital criando produções e artistas do absoluto zero.</p>
+            
+            <div style="display: flex; gap: 12px; justify-content: space-between; text-align: left;">
+                
+                <div style="flex: 1; background: #1c1c1c; border: 1px solid #333; border-radius: 12px; padding: 15px 10px; display: flex; flex-direction: column; justify-content: space-between;">
+                    <div>
+                        <div style="position: relative; width: 100%; max-width: 140px; height: 195px; margin: 0 auto 15px auto; border-radius: 8px; border: 2px solid #dfb15b; overflow: hidden; box-shadow: 0 6px 15px rgba(0,0,0,0.5);">
+                            <img src="ebookcriarcantoravirtual.jpg" onerror="this.src='ebookcriarcantoravirtual.png';" style="width: 100%; height: 100%; object-fit: cover;" alt="Capa Crie sua Cantora com IA">
+                            <span style="position: absolute; top: 8px; left: 8px; background: #dfb15b; color: #000; font-size: 8px; font-weight: bold; padding: 2px 6px; border-radius: 10px; text-transform: uppercase;">Best Seller</span>
+                        </div>
+                        <h3 style="font-size: 14px; color: #fff; margin-bottom: 8px; text-align: center; font-weight: 600; line-height: 1.3;">Crie sua Cantora com IA</h3>
+                        <p style="font-size: 11px; color: #aaa; margin-bottom: 15px; text-align: center; line-height: 1.4; min-height: 45px;">Aprenda a estruturar uma artista virtual completa e lançar um fenômeno digital.</p>
+                    </div>
+                    <a href="#" target="_blank" class="btn-gold" style="padding: 10px; font-size: 12px; text-align: center; text-transform: uppercase;">📘 Comprar Ebook</a>
+                </div>
+
+                <div style="flex: 1; background: #1c1c1c; border: 1px solid #333; border-radius: 12px; padding: 15px 10px; display: flex; flex-direction: column; justify-content: space-between;">
+                    <div>
+                        <div style="position: relative; width: 100%; max-width: 140px; height: 195px; margin: 0 auto 15px auto; border-radius: 8px; border: 2px solid #dfb15b; overflow: hidden; box-shadow: 0 6px 15px rgba(0,0,0,0.5);">
+                            <img src="ebookia.jpg" onerror="this.src='ebookia.png';" style="width: 100%; height: 100%; object-fit: cover;" alt="Capa Aprenda a Criar suas Músicas com IA">
+                            <span style="position: absolute; top: 8px; left: 8px; background: #dfb15b; color: #000; font-size: 8px; font-weight: bold; padding: 2px 6px; border-radius: 10px; text-transform: uppercase;">Premium</span>
+                        </div>
+                        <h3 style="font-size: 14px; color: #fff; margin-bottom: 8px; text-align: center; font-weight: 600; line-height: 1.3;">Aprenda a Criar suas Músicas com IA</h3>
+                        <p style="font-size: 11px; color: #aaa; margin-bottom: 15px; text-align: center; line-height: 1.4; min-height: 45px;">Domine as tecnologias para compor e produzir hits do absoluto zero.</p>
+                    </div>
+                    <a href="#" target="_blank" class="btn-gold" style="padding: 10px; font-size: 12px; text-align: center; text-transform: uppercase;">📘 Comprar Ebook</a>
+                </div>
+
+            </div>
         </div>
 
         <div id="spotify" class="block">
