@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Grife de Rodeio | Portal Oficial</title>
+    <title>Grife de Rodeo | Portal Oficial</title>
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
         body { background-color: #0b0b0b; color: #fff; text-align: center; padding-bottom: 40px; }
@@ -57,7 +57,7 @@
             padding-bottom: 15px;
             scroll-behavior: smooth;
         }
-        /* Customizando a barra de rolagem para ficar visível e bonita */
+        /* Customizando a barra de rolagem */
         .carousel-wrapper::-webkit-scrollbar {
             height: 6px;
             display: block;
@@ -107,8 +107,6 @@
             border-radius: 50%;
             transition: background-color 0.3s;
         }
-        /* Destaca as bolinhas correspondentes aos looks */
-        .look-container-relative:nth-child(1) ~ .carousel-bullets .b1 { background-color: #dfb15b; }
         
         /* SETAS DE NAVEGAÇÃO NAS LATERAIS */
         .nav-arrow {
@@ -167,7 +165,7 @@
         .btn-vestido-1 { top: 32%; }
         .btn-bota-1 { top: 78%; }
 
-        /* 2) BOTÕES DOURADOS (LOOK 2 E LOOK 3) */
+        /* 2) BOTÕES DOURADOS (LOOKS 2, 3 E 4) */
         .btn-gold-3d {
             width: 42%;
             padding: 8px 4px;
@@ -194,11 +192,16 @@
         .btn-saia-2 { top: 52%; }
         .btn-bota-2 { top: 82%; }
 
-        /* Look 3 - DISTRIBUIÇÃO EM ZIGUEZAGUE PARA NÃO COBRIR A MODELO */
-        .btn-chapeu-3 { top: 7%; right: 4%; }  /* Jogado para a direita (fundo limpo) */
-        .btn-camisa-3 { top: 26%; left: 4%; }  /* Jogado para a esquerda */
-        .btn-legging-3 { top: 48%; right: 4%; } /* Jogado para a direita */
-        .btn-bota-3 { top: 74%; left: 4%; }   /* Jogado para a esquerda */
+        /* Look 3 */
+        .btn-chapeu-3 { top: 7%; right: 4%; }
+        .btn-camisa-3 { top: 26%; left: 4%; }
+        .btn-legging-3 { top: 48%; right: 4%; }
+        .btn-bota-3 { top: 74%; left: 4%; }
+
+        /* Look 4 - ADICIONADO E DISTRIBUÍDO ESTRATEGICAMENTE */
+        .btn-chapeu-4 { top: 6%; right: 5%; }   /* Aproveita o espaço limpo acima do ombro direito */
+        .btn-vestido-4 { top: 34%; right: 5%; }  /* Aproveita a folga na cintura da pose */
+        .btn-bota-4 { top: 78%; left: 5%; }     /* Focado na bota da esquerda */
 
         /* INDICAÇÃO VISUAL DE ARRASTAR */
         .swipe-hint {
@@ -247,7 +250,7 @@
 
     <header>
         <div class="container">
-            <img src="logogrifederodeio.png" alt="Grife de Rodeio" class="logo-header">
+            <img src="logogrifederodeio.png" alt="Grife de Rodeo" class="logo-header">
             <nav class="nav-categories">
                 <a href="#looks">Look Country</a>
                 <a href="#ebook">Ebook</a>
@@ -258,7 +261,7 @@
 
     <div class="container">
         
-        <!-- WRAPPER DO CARROSSEL COM ADICIONAIS VISUAIS -->
+        <!-- WRAPPER DO CARROSSEL COM NAVEGAÇÃO -->
         <div class="carousel-container-relative" id="looks">
             
             <!-- SETAS FLUTUANTES -->
@@ -275,9 +278,9 @@
                     <a href="https://www.mercadolivre.com.br/vestido-suede-camurca-franjas-festa-country-boiadeira-rodeio/up/MLBU3857382799" target="_blank" class="btn-overlay btn-red btn-vestido-1">👗 COMPRAR VESTIDO</a>
                     <a href="https://www.mercadolivre.com.br/bota-feminina-lumiss-country-western-cano-medio-salto-baixo/up/MLBU3795451039" target="_blank" class="btn-overlay btn-red btn-bota-1">👢 COMPRAR BOTA</a>
                     
-                    <!-- INDICADOR DE BOLINHAS INTERNO -->
                     <div class="carousel-bullets">
                         <div class="bullet" style="background-color: #dfb15b;"></div>
+                        <div class="bullet"></div>
                         <div class="bullet"></div>
                         <div class="bullet"></div>
                     </div>
@@ -291,15 +294,15 @@
                     <a href="https://meli.la/1MCsc3M" target="_blank" class="btn-overlay btn-gold-3d pos-right btn-saia-2">👗 COMPRAR SAIA</a>
                     <a href="https://meli.la/2boT1xp" target="_blank" class="btn-overlay btn-gold-3d pos-right btn-bota-2">👢 COMPRAR BOTA</a>
                     
-                    <!-- INDICADOR DE BOLINHAS INTERNO -->
                     <div class="carousel-bullets">
                         <div class="bullet"></div>
                         <div class="bullet" style="background-color: #dfb15b;"></div>
                         <div class="bullet"></div>
+                        <div class="bullet"></div>
                     </div>
                 </div>
 
-                <!-- LOOK 3 (SISTEMA DE ZIGUEZAGUE E INDICAÇÕES) -->
+                <!-- LOOK 3 -->
                 <div class="look-container-relative">
                     <img src="look3grifederodeio.jpg" onerror="this.src='look3grifederodeio.png';" alt="Look 3 Grife de Rodeio" class="look-bg-img">
                     <a href="https://meli.la/1NA2R6i" target="_blank" class="btn-overlay btn-gold-3d btn-chapeu-3">🤠 CHAPÉU</a>
@@ -307,8 +310,23 @@
                     <a href="https://meli.la/32cDMVe" target="_blank" class="btn-overlay btn-gold-3d btn-legging-3">👖 LEGGING</a>
                     <a href="https://meli.la/17TuqgD" target="_blank" class="btn-overlay btn-gold-3d btn-bota-3">👢 BOTA</a>
                     
-                    <!-- INDICADOR DE BOLINHAS INTERNO -->
                     <div class="carousel-bullets">
+                        <div class="bullet"></div>
+                        <div class="bullet"></div>
+                        <div class="bullet" style="background-color: #dfb15b;"></div>
+                        <div class="bullet"></div>
+                    </div>
+                </div>
+
+                <!-- LOOK 4 (NOVO LOOK ADICIONADO) -->
+                <div class="look-container-relative">
+                    <img src="look4.png" onerror="this.src='look4.jpg';" alt="Look 4 Grife de Rodeo" class="look-bg-img">
+                    <a href="https://meli.la/2xGRAtb" target="_blank" class="btn-overlay btn-gold-3d btn-chapeu-4">🤠 CHAPÉU</a>
+                    <a href="https://meli.la/27CzeNg" target="_blank" class="btn-overlay btn-gold-3d btn-vestido-4">👗 VESTIDO</a>
+                    <a href="https://meli.la/1oMi1Vj" target="_blank" class="btn-overlay btn-gold-3d btn-bota-4">👢 BOTA</a>
+                    
+                    <div class="carousel-bullets">
+                        <div class="bullet"></div>
                         <div class="bullet"></div>
                         <div class="bullet"></div>
                         <div class="bullet" style="background-color: #dfb15b;"></div>
