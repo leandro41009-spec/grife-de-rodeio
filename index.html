@@ -1,239 +1,400 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rita Cabrita - Site Oficial</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grife de Rodeio | Portal Oficial</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        body { background-color: #0b0b0b; color: #fff; text-align: center; padding-bottom: 40px; }
+        .container { max-width: 480px; margin: 0 auto; padding: 0 15px; }
+        
+        header { 
+            background: #111; 
+            padding: 20px 10px; 
+            border-bottom: 2px solid #dfb15b;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+        }
+        .logo-header {
+            max-width: 160px;
+            width: 100%;
+            height: auto;
+            display: block;
+            margin: 0 auto 15px auto;
+        }
+        .nav-categories {
+            display: flex;
+            justify-content: space-around;
+            background: #1a1a1a;
+            padding: 10px;
+            border-radius: 25px;
+            border: 1px solid #333;
+        }
+        .nav-categories a {
+            color: #dfb15b;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .block { background: #161616; border: 1px solid #2a2a2a; border-radius: 15px; padding: 20px; margin-bottom: 25px; }
+        .block h2 { font-size: 18px; color: #dfb15b; margin-bottom: 15px; text-transform: uppercase; letter-spacing: 1px; }
+        
+        /* CONTAINER DO CARROSSEL COM SETAS EXTERNAS */
+        .carousel-container-relative {
+            position: relative;
+            margin-bottom: 15px;
+        }
+
+        /* ESTRUTURA DO CARROSSEL HORIZONTAL COM BARRA VISÍVEL */
+        .carousel-wrapper {
+            display: flex;
+            gap: 15px;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            padding-bottom: 15px;
+            scroll-behavior: smooth;
+        }
+        /* Customizando a barra de rolagem */
+        .carousel-wrapper::-webkit-scrollbar {
+            height: 6px;
+            display: block;
+        }
+        .carousel-wrapper::-webkit-scrollbar-track {
+            background: #161616;
+            border-radius: 10px;
+        }
+        .carousel-wrapper::-webkit-scrollbar-thumb {
+            background: #dfb15b;
+            border-radius: 10px;
+        }
+
+        .look-container-relative {
+            position: relative;
+            flex: 0 0 100%;
+            scroll-snap-align: start;
+            border-radius: 15px;
+            border: 1px solid #2a2a2a;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.7);
+        }
+        .look-bg-img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* INDICADORES DE BOLINHAS (BULLETS) ESTILO INSTAGRAM */
+        .carousel-bullets {
+            position: absolute;
+            bottom: 25px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 6px;
+            z-index: 20;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 6px 10px;
+            border-radius: 20px;
+            pointer-events: none;
+        }
+        .bullet {
+            width: 8px;
+            height: 8px;
+            background-color: rgba(255, 255, 255, 0.4);
+            border-radius: 50%;
+            transition: background-color 0.3s;
+        }
+        
+        /* SETAS DE NAVEGAÇÃO NAS LATERAIS */
+        .nav-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 36px;
+            height: 36px;
+            background: rgba(0, 0, 0, 0.6);
+            border: 1px solid rgba(223, 177, 91, 0.5);
+            color: #dfb15b;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            font-weight: bold;
+            z-index: 25;
+            text-decoration: none;
+            user-select: none;
+            pointer-events: auto;
+        }
+        .arrow-left { left: -10px; }
+        .arrow-right { right: -10px; }
+
+        /* ESTILO BASE DOS BOTÕES FLUTUANTES */
+        .btn-overlay {
+            position: absolute;
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 11px;
+            text-transform: uppercase;
+            text-align: center;
+            border-radius: 8px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
+            transition: all 0.1s ease;
+            z-index: 10;
+        }
+
+        /* 1) BOTÕES VERMELHOS (LOOK 1) */
+        .btn-red {
+            right: 5%;
+            width: 45%;
+            padding: 10px 5px;
+            background: linear-gradient(to bottom, #d64545 0%, #a82c2c 100%);
+            border: 1px solid #801a1a;
+            box-shadow: 0 4px 0 #611313, 0 6px 10px rgba(0, 0, 0, 0.5);
+            animation: pulse-shadow-red 1.8s infinite ease-in-out;
+        }
+        .btn-red:active {
+            transform: translateY(3px);
+            box-shadow: 0 1px 0 #611313, 0 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        .btn-chapeu-1 { top: 7%; }
+        .btn-vestido-1 { top: 32%; }
+        .btn-bota-1 { top: 78%; }
+
+        /* 2) BOTÕES DOURADOS (LOOKS 2, 3, 4 E 5) */
+        .btn-gold-3d {
+            width: 42%;
+            padding: 8px 4px;
+            color: #000;
+            text-shadow: none;
+            font-weight: 800;
+            background: linear-gradient(to bottom, #f3cb7b 0%, #b38936 100%);
+            border: 1px solid #8a641d;
+            box-shadow: 0 4px 0 #5c4210, 0 6px 10px rgba(0, 0, 0, 0.5);
+            animation: pulse-shadow-gold 1.8s infinite ease-in-out;
+        }
+        .btn-gold-3d:active {
+            transform: translateY(3px);
+            box-shadow: 0 1px 0 #5c4210, 0 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        
+        /* Alinhamentos bases laterais */
+        .pos-right { right: 4%; }
+        .pos-left { left: 4%; }
+
+        /* Look 2 */
+        .btn-chapeu-2 { top: 6%; }
+        .btn-camisa-2 { top: 25%; }
+        .btn-saia-2 { top: 52%; }
+        .btn-bota-2 { top: 82%; }
+
+        /* Look 3 */
+        .btn-chapeu-3 { top: 7%; right: 4%; }
+        .btn-camisa-3 { top: 26%; left: 4%; }
+        .btn-legging-3 { top: 48%; right: 4%; }
+        .btn-bota-3 { top: 74%; left: 4%; }
+
+        /* Look 4 */
+        .btn-chapeu-4 { top: 6%; right: 5%; }   
+        .btn-vestido-4 { top: 34%; right: 5%; }  
+        .btn-bota-4 { top: 78%; left: 5%; }     
+
+        /* Look 5 - Novo posicionamento em Zigue-zague corrigido */
+        .btn-chapeu-5 { top: 8%; right: 5%; }    /* Jogada para a direita para liberar o rosto */
+        .btn-vestido-5 { top: 35%; left: 5%; }   /* Mantido na esquerda */
+        .btn-bota-5 { top: 76%; right: 5%; }     /* Jogada para a direita para não cobrir a bota */
+
+        /* INDICAÇÃO VISUAL DE ARRASTAR */
+        .swipe-hint {
+            font-size: 12px;
+            color: #dfb15b;
+            margin-top: 10px;
+            margin-bottom: 25px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            opacity: 0.8;
+            animation: blink 2s infinite;
+        }
+
+        /* ANIMAÇÕES */
+        @keyframes pulse-shadow-red {
+            0% { transform: scale(1); box-shadow: 0 4px 0 #611313, 0 6px 10px rgba(214, 69, 69, 0.3); }
+            50% { transform: scale(1.03); box-shadow: 0 4px 0 #611313, 0 10px 15px rgba(214, 69, 69, 0.6); }
+            100% { transform: scale(1); box-shadow: 0 4px 0 #611313, 0 6px 10px rgba(214, 69, 69, 0.3); }
+        }
+        @keyframes pulse-shadow-gold {
+            0% { transform: scale(1); box-shadow: 0 4px 0 #5c4210, 0 6px 10px rgba(243, 203, 123, 0.3); }
+            50% { transform: scale(1.03); box-shadow: 0 4px 0 #5c4210, 0 10px 15px rgba(243, 203, 123, 0.6); }
+            100% { transform: scale(1); box-shadow: 0 4px 0 #5c4210, 0 6px 10px rgba(243, 203, 123, 0.3); }
+        }
+        @keyframes blink {
+            0%, 100% { opacity: 0.4; }
+            50% { opacity: 1; }
+        }
+
+        .btn-gold {
+            display: block;
+            background: linear-gradient(135deg, #dfb15b, #b38936);
+            color: #000;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 14px;
+            border-radius: 8px;
+            font-size: 15px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        }
+        .btn-spotify { background: #1DB954; color: #fff; }
+        .ebook-text { font-size: 14px; color: #ccc; margin-bottom: 15px; line-height: 1.5; }
+    </style>
 </head>
 <body>
 
-    <header class="navbar">
-        <div class="navbar-inner">
-            <div class="logo-container">
-                <img src="logoritacabrita.png" alt="Rita Cabrita" class="logo-img">
-            </div>
+    <header>
+        <div class="container">
+            <img src="logogrifederodeio.png" onerror="this.src='logogrifederodeio.jpg';" alt="Grife de Rodeo" class="logo-header">
+            <nav class="nav-categories">
+                <a href="#looks">Look Country</a>
+                <a href="#ebook">Ebook</a>
+                <a href="#spotify">Ouça no Spotify</a>
+            </nav>
+        </div>
+    </header>
 
-            <nav class="nav-links">
-                <a href="#musicas">Músicas</a>
-                <a href="#looks">Looks</a>
-                <a href="#ebook">E-book</a>
-            </nav>
+    <div class="container">
+        
+        <div class="carousel-container-relative" id="looks">
+            
+            <div class="nav-arrow arrow-left">‹</div>
+            <div class="nav-arrow arrow-right">›</div>
 
-            <a href="#" target="_blank" rel="noopener noreferrer" class="spotify-btn-header btn-3d btn-green">
-                Ouvir no Spotify
-            </a>
-        </div>
-    </header>
+            <div class="carousel-wrapper">
+                
+                <div class="look-container-relative">
+                    <img src="look1grifederodeio.png" onerror="this.src='look1grifederodeio.jpg';" alt="Look 1 Grife de Rodeio" class="look-bg-img">
+                    <a href="https://www.mercadolivre.com.br/chapeu-cowntry-americano-boiadeira-agro-com-brilho-cor-preto-desenho-do-tecido-liso-tamanho-p/p/MLB67575161" target="_blank" class="btn-overlay btn-red btn-chapeu-1">🤠 COMPRAR CHAPÉU</a>
+                    <a href="https://www.mercadolivre.com.br/vestido-suede-camurca-franjas-festa-country-boiadeira-rodeio/up/MLBU3857382799" target="_blank" class="btn-overlay btn-red btn-vestido-1">👗 COMPRAR VESTIDO</a>
+                    <a href="https://www.mercadolivre.com.br/bota-feminina-lumiss-country-western-cano-medio-salto-baixo/up/MLBU3795451039" target="_blank" class="btn-overlay btn-red btn-bota-1">👢 COMPRAR BOTA</a>
+                    
+                    <div class="carousel-bullets">
+                        <div class="bullet" style="background-color: #dfb15b;"></div>
+                        <div class="bullet"></div>
+                        <div class="bullet"></div>
+                        <div class="bullet"></div>
+                        <div class="bullet"></div>
+                    </div>
+                </div>
 
-    <section class="hero-section">
-        <div class="hero-overlay"></div>
-        <div class="hero-content">
-            <h1>O FENÔMENO DO SERTANEJO & PISEIRO WITH ATITUDE.</h1>
-            <p>Músicas que falam a verdade com aquele deboque que o povo ama. Aperte o play!</p>
-            
-            <a href="#" target="_blank" rel="noopener noreferrer" class="spotify-btn-pulsing btn-3d btn-green">
-                <i class="fa-brands fa-spotify"></i> OUVIR PLAYLIST OFICIAL NO SPOTIFY
-            </a>
-        </div>
-    </section>
+                <div class="look-container-relative">
+                    <img src="look2grifederodeio.png" onerror="this.src='look2grifederodeio.jpg';" alt="Look 2 Grife de Rodeio" class="look-bg-img">
+                    <a href="https://meli.la/2j9evH8" target="_blank" class="btn-overlay btn-gold-3d pos-right btn-chapeu-2">🤠 COMPRAR CHAPÉU</a>
+                    <a href="https://meli.la/2rU1zLS" target="_blank" class="btn-overlay btn-gold-3d pos-right btn-camisa-2">👚 COMPRAR CAMISA</a>
+                    <a href="https://meli.la/1MCsc3M" target="_blank" class="btn-overlay btn-gold-3d pos-right btn-saia-2">👗 COMPRAR SAIA</a>
+                    <a href="https://meli.la/2boT1xp" target="_blank" class="btn-overlay btn-gold-3d pos-right btn-bota-2">👢 COMPRAR BOTA</a>
+                    
+                    <div class="carousel-bullets">
+                        <div class="bullet"></div>
+                        <div class="bullet" style="background-color: #dfb15b;"></div>
+                        <div class="bullet"></div>
+                        <div class="bullet"></div>
+                        <div class="bullet"></div>
+                    </div>
+                </div>
 
-    <section id="ebook" class="ebook-section">
-        <div class="ebook-container">
-            <div class="ebook-image">
-                <img src="ebook.png" alt="Capa do Ebook">
-            </div>
-            <div class="ebook-text">
-                <h2>CRIE SUA MÚSICA COM IA E FATURE ALTO</h2>
-                <p>Descubra o método definitivo para produzir hits de sertanejo e piseiro usando inteligência artificial, direto do seu computador, mesmo sem saber tocar nenhum instrumento!</p>
-                <a href="#" target="_blank" rel="noopener noreferrer" class="btn-buy-ebook btn-3d btn-gold">
-                    GARANTIR MEU E-BOOK AGORA
-                </a>
-            </div>
-        </div>
-    </section>
+                <div class="look-container-relative">
+                    <img src="look3grifederodeio.jpg" onerror="this.src='look3grifederodeio.png';" alt="Look 3 Grife de Rodeio" class="look-bg-img">
+                    <a href="https://meli.la/1NA2R6i" target="_blank" class="btn-overlay btn-gold-3d btn-chapeu-3">🤠 CHAPÉU</a>
+                    <a href="https://meli.la/1fnTTrc" target="_blank" class="btn-overlay btn-gold-3d btn-camisa-3">👚 CAMISETTA</a>
+                    <a href="https://meli.la/32cDMVe" target="_blank" class="btn-overlay btn-gold-3d btn-legging-3">👖 LEGGING</a>
+                    <a href="https://meli.la/17TuqgD" target="_blank" class="btn-overlay btn-gold-3d btn-bota-3">👢 BOTA</a>
+                    
+                    <div class="carousel-bullets">
+                        <div class="bullet"></div>
+                        <div class="bullet"></div>
+                        <div class="bullet" style="background-color: #dfb15b;"></div>
+                        <div class="bullet"></div>
+                        <div class="bullet"></div>
+                    </div>
+                </div>
 
-    <section id="musicas" class="musicas-section">
-        <h2 class="section-title">
-            <i class="fa-solid fa-compact-disc"></i> AS MAIS TOCADAS
-        </h2>
+                <div class="look-container-relative">
+                    <img src="look4.png" onerror="this.src='look4.jpg';" alt="Look 4 Grife de Rodeo" class="look-bg-img">
+                    <a href="https://meli.la/2xGRAtb" target="_blank" class="btn-overlay btn-gold-3d btn-chapeu-4">🤠 CHAPÉU</a>
+                    <a href="https://meli.la/27CzeNg" target="_blank" class="btn-overlay btn-gold-3d btn-vestido-4">👗 VESTIDO</a>
+                    <a href="https://meli.la/1oMi1Vj" target="_blank" class="btn-overlay btn-gold-3d btn-bota-4">👢 BOTA</a>
+                    
+                    <div class="carousel-bullets">
+                        <div class="bullet"></div>
+                        <div class="bullet"></div>
+                        <div class="bullet"></div>
+                        <div class="bullet" style="background-color: #dfb15b;"></div>
+                        <div class="bullet"></div>
+                    </div>
+                </div>
 
-        <div class="musicas-carousel-wrap">
-            <div class="grid-musicas">
-                <a href="#" class="card-musica" aria-label="Ouvir música 1">
-                    <img src="capa1.jpg" alt="Capa da música Rita Cabrita 1">
-                    <span class="play-overlay"><i class="fa-solid fa-play"></i></span>
-                </a>
+                <div class="look-container-relative">
+                    <img src="look5.jpg" onerror="this.src='look5.png';" alt="Look 5 Grife de Rodeo" class="look-bg-img">
+                    <a href="https://meli.la/289p1pG" target="_blank" class="btn-overlay btn-gold-3d btn-chapeu-5">🤠 CHAPÉU</a>
+                    <a href="https://meli.la/1gco7Ws" target="_blank" class="btn-overlay btn-gold-3d btn-vestido-5">👗 VESTIDO</a>
+                    <a href="https://meli.la/1oMi1Vj" target="_blank" class="btn-overlay btn-gold-3d btn-bota-5">👢 BOTA</a>
+                    
+                    <div class="carousel-bullets">
+                        <div class="bullet"></div>
+                        <div class="bullet"></div>
+                        <div class="bullet"></div>
+                        <div class="bullet"></div>
+                        <div class="bullet" style="background-color: #dfb15b;"></div>
+                    </div>
+                </div>
 
-                <a href="#" class="card-musica" aria-label="Ouvir música 2">
-                    <img src="capa2.jpg" alt="Capa da música Rita Cabrita 2">
-                    <span class="play-overlay"><i class="fa-solid fa-play"></i></span>
-                </a>
+            </div>
+        </div>
+        
+        <div class="swipe-hint">⟨ Arraste ou use as setas para ver mais looks ⟩</div>
 
-                <a href="#" class="card-musica" aria-label="Ouvir música 3">
-                    <img src="capa3.jpg" alt="Capa da música Rita Cabrita 3">
-                    <span class="play-overlay"><i class="fa-solid fa-play"></i></span>
-                </a>
+        <div id="ebook" class="block" style="padding: 25px 15px;">
+            <h2>Treinamentos com IA</h2>
+            <p class="ebook-text" style="margin-bottom: 25px;">Descubra os métodos exatos para dominar o mercado musical digital criando produções e artistas do absoluto zero.</p>
+            
+            <div style="display: flex; gap: 12px; justify-content: space-between; text-align: left;">
+                
+                <div style="flex: 1; background: #1c1c1c; border: 1px solid #333; border-radius: 12px; padding: 15px 10px; display: flex; flex-direction: column; justify-content: space-between;">
+                    <div>
+                        <div style="position: relative; width: 100%; max-width: 140px; height: 195px; margin: 0 auto 15px auto; border-radius: 8px; border: 2px solid #dfb15b; overflow: hidden; box-shadow: 0 6px 15px rgba(0,0,0,0.5);">
+                            <img src="ebookcriarcantoravirtual.jpg" onerror="this.src='ebookcriarcantoravirtual.png';" style="width: 100%; height: 100%; object-fit: cover;" alt="Capa Crie sua Cantora com IA">
+                            <span style="position: absolute; top: 8px; left: 8px; background: #dfb15b; color: #000; font-size: 8px; font-weight: bold; padding: 2px 6px; border-radius: 10px; text-transform: uppercase;">Best Seller</span>
+                        </div>
+                        <h3 style="font-size: 14px; color: #fff; margin-bottom: 8px; text-align: center; font-weight: 600; line-height: 1.3;">Crie sua Cantora com IA</h3>
+                        <p style="font-size: 11px; color: #aaa; margin-bottom: 15px; text-align: center; line-height: 1.4; min-height: 45px;">Aprenda a estruturar uma artista virtual completa e lançar um phenomenon digital.</p>
+                    </div>
+                    <a href="#" target="_blank" class="btn-gold" style="padding: 10px; font-size: 12px; text-align: center; text-transform: uppercase;">📘 Comprar Ebook</a>
+                </div>
 
-                <a href="#" class="card-musica" aria-label="Ouvir música 4">
-                    <img src="capa4.jpg" alt="Capa da música Rita Cabrita 4">
-                    <span class="play-overlay"><i class="fa-solid fa-play"></i></span>
-                </a>
+                <div style="flex: 1; background: #1c1c1c; border: 1px solid #333; border-radius: 12px; padding: 15px 10px; display: flex; flex-direction: column; justify-content: space-between;">
+                    <div>
+                        <div style="position: relative; width: 100%; max-width: 140px; height: 195px; margin: 0 auto 15px auto; border-radius: 8px; border: 2px solid #dfb15b; overflow: hidden; box-shadow: 0 6px 15px rgba(0,0,0,0.5);">
+                            <img src="ebookia.jpg" onerror="this.src='ebookia.png';" style="width: 100%; height: 100%; object-fit: cover;" alt="Capa Aprenda a Criar suas Músicas com IA">
+                            <span style="position: absolute; top: 8px; left: 8px; background: #dfb15b; color: #000; font-size: 8px; font-weight: bold; padding: 2px 6px; border-radius: 10px; text-transform: uppercase;">Premium</span>
+                        </div>
+                        <h3 style="font-size: 14px; color: #fff; margin-bottom: 8px; text-align: center; font-weight: 600; line-height: 1.3;">Aprenda a Criar suas Músicas com IA</h3>
+                        <p style="font-size: 11px; color: #aaa; margin-bottom: 15px; text-align: center; line-height: 1.4; min-height: 45px;">Domine as tecnologias para compor e produzir hits do absoluto zero.</p>
+                    </div>
+                    <a href="#" target="_blank" class="btn-gold" style="padding: 10px; font-size: 12px; text-align: center; text-transform: uppercase;">📘 Comprar Ebook</a>
+                </div>
 
-                <a href="#" class="card-musica" aria-label="Ouvir música 5">
-                    <img src="capa5.jpg" alt="Capa da música Rita Cabrita 5">
-                    <span class="play-overlay"><i class="fa-solid fa-play"></i></span>
-                </a>
-            </div>
-        </div>
+            </div>
+        </div>
 
-        <div class="cta-musicas-container">
-            <a href="#" target="_blank" rel="noopener noreferrer" class="btn-ouca-agora btn-3d btn-gold">
-                <i class="fa-solid fa-play"></i> OUÇA AGORA NO SPOTIFY
-            </a>
-        </div>
-    </section>
+        <div id="spotify" class="block">
+            <h2>Ouça os Lançamentos</h2>
+            <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/37i9dQZF1DX10zKzsJ2jva" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+            <a href="#" target="_blank" class="btn-gold btn-spotify" style="margin-top: 15px;">🟢 Seguir no Spotify</a>
+        </div>
 
-    <section id="looks" class="looks-section">
-        <h2 class="section-title">🤠 ESTILO RITA CABRITA: COMPRE O LOOK</h2>
-        <p class="section-subtitle">
-            Deslize para o lado para ver os looks da Rita e clicar nas peças.
-        </p>
-
-        <div class="looks-carousel-wrap">
-            <div class="looks-track">
-
-                <!-- LOOK 22 -->
-                <article class="look-slide">
-                    <div class="look-novo-imagem">
-                        <img src="lookrita22.png" alt="Rita Cabrita usando vestido marrom com chapéu e botas">
-
-                        <a href="https://meli.la/1NA2R6i" target="_blank" rel="noopener noreferrer" class="look-bubble bubble-hat">
-                            <span class="bubble-top">ESTILO ICÔNICO</span>
-                            <span class="bubble-bottom">VER PREÇO DO CHAPÉU</span>
-                        </a>
-
-                        <a href="https://meli.la/2VhTTxF" target="_blank" rel="noopener noreferrer" class="look-bubble bubble-dress">
-                            <span class="bubble-top">LOOK COUNTRY</span>
-                            <span class="bubble-bottom">VER PREÇO DO VESTIDO</span>
-                        </a>
-
-                        <a href="https://meli.la/1oMi1Vj" target="_blank" rel="noopener noreferrer" class="look-bubble bubble-boot-left">
-                            <span class="bubble-top">PASSO DE ESTILO</span>
-                            <span class="bubble-bottom">VER PREÇO DA BOTA</span>
-                        </a>
-                    </div>
-                </article>
-
-                <!-- LOOK 23 -->
-                <article class="look-slide">
-                    <div class="look-novo-imagem">
-                        <img src="lookrita23.png" alt="Rita Cabrita usando look com chapéu, camisa, saia e bota">
-
-                        <a href="https://meli.la/2j9evH8" target="_blank" rel="noopener noreferrer" class="look-bubble bubble-hat">
-                            <span class="bubble-top">ESTILO ICÔNICO</span>
-                            <span class="bubble-bottom">VER PREÇO DO CHAPÉU</span>
-                        </a>
-
-                        <a href="https://meli.la/2rU1zLS" target="_blank" rel="noopener noreferrer" class="look-bubble bubble-shirt bubble-dark">
-                            <span class="bubble-top">BRILHO EXCLUSIVO</span>
-                            <span class="bubble-bottom">VER PREÇO DA CAMISA</span>
-                        </a>
-
-                        <a href="https://meli.la/1MCsc3M" target="_blank" rel="noopener noreferrer" class="look-bubble bubble-skirt">
-                            <span class="bubble-top">DETALHE COUNTRY</span>
-                            <span class="bubble-bottom">VER PREÇO DA SAIA</span>
-                        </a>
-
-                        <a href="https://meli.la/2boT1xp" target="_blank" rel="noopener noreferrer" class="look-bubble bubble-boot bubble-light">
-                            <span class="bubble-top">PASSO DE ESTILO</span>
-                            <span class="bubble-bottom">VER PREÇO DAS BOTAS</span>
-                        </a>
-                    </div>
-                </article>
-
-                <!-- LOOK 25 -->
-                <article class="look-slide">
-                    <div class="look-novo-imagem">
-                        <img src="lookrita25.png" alt="Rita Cabrita usando look com chapéu, camiseta feminina, legging e bota">
-
-                        <a href="https://meli.la/1NA2R6i" target="_blank" rel="noopener noreferrer" class="look-bubble bubble-hat">
-                            <span class="bubble-top">ESTILO ICÔNICO</span>
-                            <span class="bubble-bottom">VER PREÇO DO CHAPÉU</span>
-                        </a>
-
-                        <a href="https://meli.la/1fnTTrc" target="_blank" rel="noopener noreferrer" class="look-bubble bubble-shirt bubble-dark">
-                            <span class="bubble-top">LOOK COUNTRY</span>
-                            <span class="bubble-bottom">VER PREÇO DA CAMISETA</span>
-                        </a>
-
-                        <a href="https://meli.la/32cDMVe" target="_blank" rel="noopener noreferrer" class="look-bubble bubble-skirt">
-                            <span class="bubble-top">CAIMENTO PERFEITO</span>
-                            <span class="bubble-bottom">VER PREÇO DA LEGGING</span>
-                        </a>
-
-                        <a href="https://meli.la/17TuqgD" target="_blank" rel="noopener noreferrer" class="look-bubble bubble-boot bubble-light">
-                            <span class="bubble-top">PASSO DE ESTILO</span>
-                            <span class="bubble-bottom">VER PREÇO DA BOTA</span>
-                        </a>
-                    </div>
-                </article>
-
-                <!-- LOOK 27 -->
-                <article class="look-slide">
-                    <div class="look-novo-imagem">
-                        <img src="lookrita27.png" alt="Rita Cabrita usando vestido marrom curto com chapéu e botas">
-
-                        <a href="https://meli.la/2xGRAtb" target="_blank" rel="noopener noreferrer" class="look-bubble bubble-hat">
-                            <span class="bubble-top">ESTILO ICÔNICO</span>
-                            <span class="bubble-bottom">VER PREÇO DO CHAPÉU</span>
-                        </a>
-
-                        <a href="https://meli.la/27CzeNg" target="_blank" rel="noopener noreferrer" class="look-bubble bubble-dress">
-                            <span class="bubble-top">LOOK COUNTRY</span>
-                            <span class="bubble-bottom">VER PREÇO DO VESTIDO</span>
-                        </a>
-
-                        <a href="https://meli.la/1oMi1Vj" target="_blank" rel="noopener noreferrer" class="look-bubble bubble-boot-left">
-                            <span class="bubble-top">PASSO DE ESTILO</span>
-                            <span class="bubble-bottom">VER PREÇO DA BOTA</span>
-                        </a>
-                    </div>
-                </article>
-
-            </div>
-        </div>
-
-        <p class="looks-disclaimer">
-            Alguns links desta página podem ser links de afiliado.
-        </p>
-    </section>
-
-    <footer class="site-footer">
-        <div class="footer-container">
-            <div class="footer-logo">
-                <img src="logoritacabrita.png" alt="Rita Cabrita" class="logo-img">
-                <p>O fenômeno do sertanejo & piseiro.</p>
-            </div>
-
-            <div class="footer-nav">
-                <a href="#musicas">Músicas</a>
-                <a href="#looks">Looks</a>
-                <a href="#ebook">E-book</a>
-            </div>
-
-            <div class="footer-socials">
-                <div class="social-icons">
-                    <a href="#" target="_blank" rel="noopener noreferrer" class="social-icon"><i class="fa-brands fa-spotify"></i></a>
-                    <a href="#" target="_blank" rel="noopener noreferrer" class="social-icon"><i class="fa-brands fa-instagram"></i></a>
-                    <a href="#" target="_blank" rel="noopener noreferrer" class="social-icon"><i class="fa-brands fa-tiktok"></i></a>
-                    <a href="#" target="_blank" rel="noopener noreferrer" class="social-icon"><i class="fa-brands fa-facebook"></i></a>
-                </div>
-                <p class="copyright">&copy; 2026 Rita Cabrita. Todos os direitos reservados.</p>
-            </div>
-        </div>
-    </footer>
+    </div>
 
 </body>
 </html>
